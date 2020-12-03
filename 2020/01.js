@@ -2,8 +2,10 @@ const input = [1438,781,1917,1371,1336,1802,1566,1878,737,1998,1488,1372,1715,15
 
 for(const i of input) {
     for(const j of input) {
-        if(i != j && (i+j) == 2020) {
-            console.log(i*j)
+        for(const x of input) {
+            if((i+j+x) == 2020) {
+                console.log(i*j*x)
+            }
         }
     }
 }
