@@ -1000,14 +1000,19 @@ const input = `2-8 t: pncmjxlvckfbtrjh
 10-11 x: xxxxxxxxxcv`
 let validPasswordsCount = 0
 
-
 const lines = input.split('\n')
 const re = /(?<from>\d+)-(?<to>\d+) (?<letter>\w): (?<password>\w+)/g
 lines.map(line => {
     const match = re.exec(input)
     console.log(`From: ${match.groups.from} \tTo: ${match.groups.to}\tLetter: ${match.groups.letter}\tpassword: ${match.groups.password}`);
-    const letterCount = match.groups.password.split(match.groups.letter).length - 1
-    if (letterCount >= match.groups.from && letterCount <= match.groups.to) {
+    const password = match.groups.password
+    const letter = match.groups.letter
+    const first = match.groups.from
+    const second = match.groups.to
+    let result = password[first - 1] === letter ? 1 : 0
+    result = password[second - 1] === letter ? result + 1 : result + 0
+
+    if (result === 1) {
         validPasswordsCount++
     }
 })
